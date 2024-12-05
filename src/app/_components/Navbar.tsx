@@ -16,7 +16,7 @@ export function Navbar() {
           <Link href="/characters">
             <Heading
               as="h1"
-              textStyle="brand"
+              color="green"
             >
               Rick and Morty Library
             </Heading>

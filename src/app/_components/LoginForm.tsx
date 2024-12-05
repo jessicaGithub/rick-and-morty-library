@@ -90,6 +90,8 @@ export default function LoginForm() {
       </FormControl>
       <Button
         mt={4}
+        w={'100%'}
+        colorScheme="green"
         isLoading={isSubmitting}
         type="submit"
       >

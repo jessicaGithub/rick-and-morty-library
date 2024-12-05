@@ -1,12 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 import LoginForm from "@/app/_components/LoginForm";
 
 export default function Account() {
   return (
-    <Box>
-      <Text>Update your detail?</Text>
+    <Flex direction='column' gap={10}>
+      <Text><strong>Update your detail?</strong></Text>
       <LoginForm />
-    </Box>
+    </Flex>
   );
 }
