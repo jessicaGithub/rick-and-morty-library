@@ -7,10 +7,9 @@ import {
   InMemoryCache,
 } from "@apollo/experimental-nextjs-app-support";
 
-// have a function to create a client for you
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: process.env.RICK_MORTY_GRAPHQL_API_URL,
+    uri: 'https://rickandmortyapi.com/graphql',
     fetchOptions: { cache: "no-store" },
   });
 
