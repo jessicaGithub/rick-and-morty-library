@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
+import { ChakraProvider, Container } from "@chakra-ui/react";
 import { ApolloWrapper } from "../lib/ApolloWrapper";
 
 import { brandTheme } from "./brandTheme";

@@ -18,12 +18,17 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { GET_CHARACTERS } from "@/queries/character-queries";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { NavigateOptions } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface Character {
   id: string;
   name: string;
   species: string;
   image: string;
+}
+
+interface NavigateOptionsWithShallow extends NavigateOptions {
+  shallow?: boolean;
 }
 
 export default function Characters() {
@@ -40,8 +45,8 @@ export default function Characters() {
 
   useEffect(() => {
     // Always do navigations after the first render
-    router.push(`${pathname}?page=${page}&name=${name}`, undefined, { shallow: true })
-  }, [page, name, router, pathname]);
+    router.push(`${pathname}?page=${page}&name=${name}`, { shallow: true } as NavigateOptionsWithShallow);
+  }, [router, pathname, page, name]);
 
   return (
     <Flex
@@ -55,16 +60,21 @@ export default function Characters() {
           id="name"
           name="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            // go back to first page when searching, in case of fewer results
+            setPage(1); 
+            setName(e.target.value)
+          }}
         />
       </Flex>
       <SimpleGrid
-        columns={[1, 2, 4, 6]}
+        columns={[1, 2, 4, 5]}
         spacing={10}
       >
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
-        {data?.characters?.results?.map((character: Character) => (
+        {data?.characters?.results?.length === 0 && <p>No characters found</p>}
+        {data?.characters?.results?.length > 0 && data?.characters?.results?.map((character: Character) => (
           <Link
             key={character.id}
             href={`/characters/${character.id}?page=${page}&name=${name}`}
