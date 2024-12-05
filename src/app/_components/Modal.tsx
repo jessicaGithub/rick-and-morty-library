@@ -9,6 +9,11 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
+  Text,
+  Image,
+  Flex,
+  Box,
+  Stack,
 } from "@chakra-ui/react";
 import { GET_CHARACTER_BY_ID } from "@/queries/character-queries";
 import { useQuery } from "@apollo/client";
@@ -35,10 +40,38 @@ function Modal({ id }: { id: string }) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+        <ModalHeader>{data?.character?.name}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-        {data?.character?.name}
+        {loading && <Text>Loading...</Text>}
+        {error && <Text>Error: {error.message}</Text>}
+        {data && (
+          <Flex gap={4} direction='column'>
+            <Image src={data.character.image} alt={data.character.name} width='100%' height='100%' aspectRatio={1} />
+            <Stack>
+              <Box>
+                <Text><strong>Origin:</strong></Text>
+                <Text>{data.character.origin.name}</Text>
+              </Box>
+              <Box>
+                <Text><strong>Current location:</strong></Text>
+                <Text>{data.character.location.name}</Text>
+              </Box>
+              <Box>
+                <Text><strong>Status:</strong></Text>
+                <Text>{data.character.status}</Text>
+              </Box>
+              <Box>
+                <Text><strong>Species:</strong></Text>
+                <Text>{data.character.species}</Text>
+              </Box>
+              <Box>
+                <Text><strong>Gender:</strong></Text>
+                <Text>{data.character.gender}</Text>
+              </Box>
+            </Stack>
+          </Flex>
+        )}
         </ModalBody>
 
         <ModalFooter>
@@ -49,7 +82,6 @@ function Modal({ id }: { id: string }) {
           >
             Close
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
         </ModalFooter>
       </ModalContent>
     </ChakraModal>

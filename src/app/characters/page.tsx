@@ -48,8 +48,8 @@ export default function Characters() {
       direction="column"
       gap={10}
     >
-      <Flex gap={20}>
-        <Text>Search by name:</Text>
+      <Flex gap={{ base: 4, md: 8}} direction={{ base: 'column', md: 'row' }} alignItems={{ base: 'flex-start', md: 'center'}} justifyContent={'center'}>
+        <Text flex='none'>Search by name:</Text>
         <Input
           type="text"
           id="name"
@@ -59,7 +59,7 @@ export default function Characters() {
         />
       </Flex>
       <SimpleGrid
-        columns={[1, 2, 6]}
+        columns={[1, 2, 4, 6]}
         spacing={10}
       >
         {loading && <p>Loading...</p>}
@@ -87,7 +87,7 @@ export default function Characters() {
           </Link>
         ))}
       </SimpleGrid>
-      <Flex py={20}>
+      <Flex py={{ base: 8, md: 20 }}>
         {data?.characters?.info?.prev && (
           <Button
             colorScheme="green"

@@ -18,6 +18,7 @@ export const GET_CHARACTERS = gql`
         species
         origin {
           id
+          name
         }
         image
       }
@@ -34,8 +35,14 @@ export const GET_CHARACTER_BY_ID = gql`
       species
       origin {
         id
+        name
       }
       image
+      gender
+      location {
+        id
+        name
+      }
     }
   }
 `;
