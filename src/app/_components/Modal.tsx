@@ -12,10 +12,12 @@ import {
 } from "@chakra-ui/react";
 import { GET_CHARACTER_BY_ID } from "@/queries/character-queries";
 import { useQuery } from "@apollo/client";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 function Modal({ id }: { id: string }) {
+  const params = useSearchParams();
+
   const [isOpen, setIsOpen] = useState(true);
   const { data, loading, error } = useQuery(GET_CHARACTER_BY_ID, {
     variables: { id: id },
@@ -23,7 +25,7 @@ function Modal({ id }: { id: string }) {
 
   const onClose = () => {
     setIsOpen(false);
-    redirect("/characters");
+    redirect(`/characters?page=${Number(params?.get('page'))}&name=${params?.get('name')}`);
   };
 
   return (
