@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Text, Image } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { GET_CHARACTERS } from "@/queries/character-queries";
-
+import Link from 'next/link';
 import styles from "./page.module.css";
+
 
 interface Character {
   id: string;
@@ -39,11 +40,13 @@ export default function Characters() {
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             {data?.characters?.results?.map((character: Character) => (
-                <div key={character.id} className={styles.card}>
-                    <Image src={character.image} alt={character.name} width={100} height={100} aspectRatio={1} />
-                    <h2>{character.name}</h2>
-                    <p>{character.species}</p>
-                </div>
+                <Link key={character.id} href={`/characters/${character.id}`} scroll={false} passHref>
+                    <div className={styles.card}>
+                        <Image src={character.image} alt={character.name} width={100} height={100} aspectRatio={1} />
+                        <h2>{character.name}</h2>
+                        <p>{character.species}</p>
+                    </div>
+                </Link>
             ))}
         </div>
         <div className={styles.pagination}>
