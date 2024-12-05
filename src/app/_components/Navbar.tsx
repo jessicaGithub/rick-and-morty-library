@@ -1,7 +1,6 @@
 "use client";
 
-import { SettingsIcon } from "@chakra-ui/icons";
-import { Avatar, Box, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { Avatar, Box,  Flex, Heading, Spacer } from "@chakra-ui/react";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
 
@@ -23,7 +22,7 @@ export function Navbar() {
           </Link>
           <Spacer />
           <Link href="/account">
-            <Avatar name={userData?.username || <SettingsIcon />} />
+            {userData?.username && <Avatar name={userData.username} />}
           </Link>
         </Flex>
       </Box>

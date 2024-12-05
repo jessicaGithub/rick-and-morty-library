@@ -41,7 +41,7 @@ export default function Characters() {
   useEffect(() => {
     // Always do navigations after the first render
     router.push(`${pathname}?page=${page}&name=${name}`, undefined, { shallow: true })
-  }, [page, name])
+  }, [page, name, router, pathname]);
 
   return (
     <Flex
