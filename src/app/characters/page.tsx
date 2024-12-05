@@ -56,6 +56,7 @@ export default function Characters() {
       <Flex gap={{ base: 4, md: 8}} direction={{ base: 'column', md: 'row' }} alignItems={{ base: 'flex-start', md: 'center'}} justifyContent={'center'}>
         <Text flex='none'>Search by name:</Text>
         <Input
+          aria-label="Search by name"
           type="text"
           id="name"
           name="name"

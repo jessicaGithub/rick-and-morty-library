@@ -45,15 +45,15 @@ export default function LoginForm() {
       maxAge: 60 * 60 * 24, // one day
     });
 
-    if (!cookieExist) {
-      redirect("/characters");
-    } else {
+    if (cookieExist) {
       toast({
         title: "Info updated.",
         status: "success",
         duration: 2000,
       });
     }
+
+    redirect("/characters");
   }
 
   return (

@@ -12,10 +12,24 @@ server side vs client side plus the breaking changes was quite challenging. If I
 - Fix the modal URL not loading the background on refresh
 - use less client components
 - allow user to select view mode (table vs grid vs list)
+- remove the annoying jumpyness on modal closing
+- add accessibility attributes / enhancements
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies
+
+```bash
+npm i
+# or
+yarn i
+# or
+pnpm i
+# or
+bun i
+```
+
+then run the development server:
 
 ```bash
 npm run dev
@@ -31,3 +45,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployed on Vercel
 
+https://rick-and-morty-library-two.vercel.app/
