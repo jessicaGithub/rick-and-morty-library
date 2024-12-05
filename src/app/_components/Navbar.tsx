@@ -1,19 +1,22 @@
-import { Heading } from '@chakra-ui/react';
-import Image from 'next/image';
+'use client';
+
+import { SettingsIcon } from '@chakra-ui/icons';
+import { Avatar, Heading } from '@chakra-ui/react';
+import { getCookie } from 'cookies-next';
+import Link from 'next/link';
 
 export function Navbar () {
+    const cookieVal = getCookie('userInfo');
+    const userData = cookieVal ? JSON.parse(String(cookieVal)) : null;
+
     return (
         <nav>
             <div className="logo">
-                <Image width={200} height={200} src="/logo.jpg" alt="rick's image in the style of leonardo.ai logo" />
-                <Heading as="h1" textStyle='brand'>Rick and Morty Library</Heading>
+                <Link href="/characters">
+                    <Heading as="h1" textStyle='brand'>Rick and Morty Library</Heading>
+                </Link>
             </div>
-        <ul>
-            <li>Home</li>
-            <li>Characters</li>
-            <li>Episodes</li>
-            <li>Locations</li>
-        </ul>
+            <Avatar name={userData?.username || <SettingsIcon />} />
         </nav>
     )
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from "react-hook-form";
-import { setCookie } from "cookies-next";
+import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { redirect } from 'next/navigation'
 
 import {
@@ -10,6 +10,7 @@ import {
   FormControl,
   Input,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 
 interface LoginFormContext {
@@ -19,14 +20,19 @@ interface LoginFormContext {
 
 export default function LoginForm() {
 
+  const cookieExist = hasCookie("userInfo");
+  const cookieVal = cookieExist ? getCookie("userInfo") : null;
+  const userData = cookieExist ? JSON.parse(String(cookieVal)) : null;
+  const toast = useToast();
+  
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
-      username: "",
-      jobTitle: "",
+      username: userData?.username || "",
+      jobTitle: userData?.jobTitle || "",
     },
   });
 
@@ -39,7 +45,15 @@ export default function LoginForm() {
       sameSite: "strict",
     });
 
-    redirect("/characters");
+    if (!cookieExist) {
+      redirect("/characters");
+    } else {
+      toast({
+        title: "Info updated.",
+        status: "success",
+        duration: 2000,
+      });
+    }
   }
 
   return (
@@ -77,7 +91,7 @@ export default function LoginForm() {
         isLoading={isSubmitting}
         type="submit"
       >
-        Let's go!
+        {cookieExist ? "Update info" : "Let's go!"}
       </Button>
     </form>
   );

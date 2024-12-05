@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Heading, Text } from '@chakra-ui/react'
 import styles from "./page.module.css";
-import LoginForm from "./_components/LoginForm";
+import LoginForm from "@/app/_components/LoginForm";
 
 export default function Home() {
   return (
