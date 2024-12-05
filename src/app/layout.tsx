@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
 import { ApolloWrapper } from "../lib/ApolloWrapper";
 
 import { brandTheme } from "./brandTheme";
@@ -19,7 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ApolloWrapper>
-          <ChakraProvider theme={brandTheme}>{children}</ChakraProvider>
+          <ChakraProvider theme={brandTheme}>
+            <Container maxW='container.xl' centerContent>
+                {children}
+            </Container>
+            </ChakraProvider>
         </ApolloWrapper>
       </body>
     </html>

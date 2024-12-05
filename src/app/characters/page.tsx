@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Text, Image } from "@chakra-ui/react";
+import { Text, Image, Box } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { GET_CHARACTERS } from "@/queries/character-queries";
 import Link from 'next/link';
 import styles from "./page.module.css";
-
 
 interface Character {
   id: string;
@@ -24,7 +23,6 @@ export default function Characters() {
   });
  
   return (
-    <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.filterBar}>
             <Text>Search by name:</Text>
@@ -58,6 +56,5 @@ export default function Characters() {
             )}
         </div>
       </main>
-    </div>
   );
 }

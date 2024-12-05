@@ -11,6 +11,7 @@ import {
   Input,
   Button,
   useToast,
+  Flex,
 } from "@chakra-ui/react";
 
 interface LoginFormContext {
@@ -58,6 +59,7 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Flex direction='column' gap={4} justifyContent='center' alignItems='center'>
       <FormControl isInvalid={!!errors.username}>
         <FormLabel htmlFor="username">Username</FormLabel>
         <Input
@@ -93,6 +95,7 @@ export default function LoginForm() {
       >
         {cookieExist ? "Update info" : "Let's go!"}
       </Button>
+      </Flex>
     </form>
   );
 }
